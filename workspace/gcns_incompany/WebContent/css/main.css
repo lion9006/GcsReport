@@ -1,0 +1,99 @@
+﻿th {
+	width: 32px;
+}
+
+img {
+	border: 0;
+}
+/* 메뉴 - 그라디언트 */
+.gradient1 {
+	width: 128px;
+	background: linear-gradient(270deg, #74b4e5, white);
+}
+
+.gradient2 {
+	width: 128px;
+	background: linear-gradient(90deg, #74b4e5, white);
+}
+/*
+        .gradient3{
+            color: #fef4e9;
+           border: solid 1px white;
+           background: #74b4e5;
+           background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+           background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+           filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+        }
+
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        */
+
+/* 메뉴 - 이미지오버 */
+th#hover1 {
+	width: 192px;
+	height: 32px;
+	background: url("../img/main/menu_1.png") no-repeat;
+	border: solid 1px white;
+	cursor: pointer;
+	background-position: 0 -32px;
+	border: solid 1px white;
+}
+
+th:hover#hover1 {
+	background-position: 0 -32px;
+	border: solid 1px white;
+}
+
+th#hover2 {
+	width: 192px;
+	height: 32px;
+	background: url("../img/main/menu_2.png") no-repeat;
+	border: solid 1px white;
+	cursor: pointer;
+}
+
+th:hover#hover2 {
+	background-position: 0 -32px;
+	border: solid 1px white;
+}
+
+th#hover3 {
+	width: 192px;
+	height: 32px;
+	background: url("../img/main/menu_3.png") no-repeat;
+	border: solid 1px white;
+	cursor: pointer;
+}
+
+th:hover#hover3 {
+	background-position: 0 -32px;
+	border: solid 1px white;
+}
+
+th#hover4 {
+	width: 192px;
+	height: 32px;
+	background: url("../img/main/menu_4.png") no-repeat;
+	border: solid 1px white;
+	cursor: pointer;
+}
+
+th:hover#hover4 {
+	background-position: 0 -32px;
+	border: solid 1px white;
+}
+
+.gradient {
+
+	background: linear-gradient(to right, skyblue, white);
+}
+
+/* 마우스 포인터 */
+.mousePointer:hover {
+	cursor: pointer;
+}

@@ -1,0 +1,64 @@
+﻿		.title1 {
+			font-size: 24px;
+			font-weight: bold;
+			border: 1px solid #dedede;
+			background-color: #f3f3f3;
+			border-top: 4px solid #0099ff;
+			height: 45px;
+		}
+		
+		.title_size {
+			font-size: 19px;
+			text-align: left;
+			border-bottom: 2px solid #e2e2e2;
+		}
+		
+		table {
+			border-collapse: collapse;
+			font: 15px Verdana, Arial;
+			word-spacing: -1px;
+		}
+		
+		.gcs {
+			align-content: center;
+			height: 30px;
+		}
+		
+		table>tr {
+			width: 1800px;
+		}
+		
+		.txtbox {
+			position: relative;
+			right: 250px;
+		}
+		
+		.td {
+			position: relative;
+			left: 20px;
+		}
+        #po {
+            position: relative;
+            right: 244px;
+            color: red;
+            font-size: 12px;
+        }
+
+        #po1 {
+            position: relative;
+            right: 244px;
+            color: red;
+            font-size: 12px;
+        }
+
+        #chk {
+            position: relative;
+            right: 244px;
+            color: blue;
+            font-size: 12px;
+        }
+
+        #kaid {
+            text-transform: lowercase;
+            ime-mode: disabled;
+        }

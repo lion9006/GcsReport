@@ -1,0 +1,106 @@
+﻿/* Webkit 오후 4:31 2015-01-10*/
+input::-webkit-input-placeholder { font-size:11px;color: #5592c2; text-align:left; padding-left:80px;}
+
+/* Firefox 4-18 */
+input:-moz-placeholder { font-size:11px;color: #5592c2;text-align:left; padding-left:80px;}
+
+/* Firefox 19+ */
+input::-moz-placeholder { font-size:11px;color: #5592c2;text-align:left; padding-left:80px;}
+
+/* IE10+ */
+input:-ms-input-placeholder { font-size:11px;color: #5592c2;text-align:left; padding-left:80px;}
+
+
+
+
+ * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background: url(../img/index/bg_001.gif) 0 185px repeat-x;
+        }
+
+        #wrap {
+            width: 785px;
+            margin: 0 auto;
+            background: url(../img/index/bg_002.jpg) no-repeat;
+            min-height: 770px;
+            position: relative;
+        }
+
+        .wrap_logo {
+            padding: 143px 0 0 44px;
+        }
+
+        .login_title {
+            position: absolute;
+            left: 83px;
+            top: 258px;
+        }
+
+        .login_box {
+            background: url(../img/index/bg_login_box.png) no-repeat;
+            width: 290px;
+            height: 34px;
+        }
+
+        .text_id {
+            background: url(../img/index/txt_id.png) 0 10px no-repeat;
+            width: 256px;
+            height: 28px;
+            margin-top: 2px;
+            margin-left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .text_pwd {
+            background: url(../img/index/txt_pw.png) 0 10px no-repeat;
+            width: 256px;
+            height: 28px;
+            margin-top: 2px;
+            margin-left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .login_form {
+            margin-left: 265px;
+            margin-top: 40px;
+        }
+
+        span {
+            float: left;
+        }
+
+        #footer {
+            margin-top: 200px;
+            font-size: 12px;
+            margin-left: 0px;
+            font-family: tahoma;
+        }
+
+        a{
+            text-decoration: underline;
+            color: #E0F2FF;
+            font-size: 11px;
+            font-family:tahoma;
+        }
+
+        .join {
+            position: relative;
+            top: 127px;
+            left: 265px;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+#id_save {
+    position:relative;
+    top:2.5px;
+}
+
+    input.text_id { text-transform: uppercase; 
+			ime-mode:disabled; 
+		}

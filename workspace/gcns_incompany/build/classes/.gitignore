@@ -1,0 +1,9 @@
+/db.properties
+/log4j.properties
+/mapper_bbsinfo.xml
+/mapper_codeinfo.xml
+/mapper_manager.xml
+/mapper_userinfo.xml
+/myBatisConfig.xml
+/src/
+/struts.xml

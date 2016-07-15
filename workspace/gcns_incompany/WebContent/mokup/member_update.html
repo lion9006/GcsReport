@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/memberList.css" />
+<script>
+	function memberUpdate(){
+		if(document.updateform.password.value!=document.updateform.repassword.value||
+				document.updateform.password.value==""||document.updateform.repassword.value==""){
+			alert("パスワードを確認してください。");
+			return;
+		}
+		alert("修正完了");
+		location.href = "manager.html";
+	}
+	function cancel(){
+		location.href = "manager.html";
+	}
+</script>
+</head>
+<body>
+	
+	<center>
+		<img src="img/manager/memberinformupdate.jpg">
+		<form method="post" action="/memberupdate" name="updateform">
+			<table border="1" style="border-color: skyblue; border-collapse: collapse;">
+				<tr>
+					<th align="left">社員番号</th>
+					<td><input type="text" id="id" value="20150101" disabled="disabled"></td>
+					
+				</tr>
+				<tr>
+					<th align="left">パスワード</th>
+					<td><input type="password" id="password" maxlength="16"></td>
+					
+				</tr>
+				<tr>
+					<th align="left">パスワード確認</th>
+					<td><input type="password" id="repassword" maxlength="16"></td>
+					
+				</tr>
+				<tr>
+					<th align="left">部署</th>
+					<td align="left"><select id="department">
+							<option selected="selected">GCS1D</option>
+							<option>GCS2D</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th align="left">職位</th>
+					<td align="left"><select id="position">
+							<option>部長</option>
+							<option>MG</option>
+							<option>LD</option>
+							<option selected="selected">社員</option>
+						</select>
+					</td>
+					
+				</tr>
+			</table>
+		</form>
+		<table>
+			<tr>
+				<td><input type="button" value="修正" onclick="memberUpdate()">&nbsp;&nbsp;<input type="button" value="キャンセル" onclick="cancel()"></td>
+			</tr>
+		</table>
+	</center>
+</body>
+</html>

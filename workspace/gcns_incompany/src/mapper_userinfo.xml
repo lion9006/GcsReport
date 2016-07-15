@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+	<resultMap id="file" type="src.bean.FileListInfoTBLBean">
+		<result property="FILE_INDEX" column="FILE_INDEX" />
+		<result property="FILE_NAME" column="FILE_NAME" />
+		<result property="FILE_TYPE" column="FILE_TYPE" />
+		<result property="FILE_INFO" column="FILE_INFO" />
+		<result property="FILE_SIZE" column="FILE_SIZE" />
+		<result property="FILE_DATA" column="FILE_DATA" jdbcType="BLOB"
+			javaType="[B" typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
+		<result property="DEL_FLG" column="DEL_FLG" />
+		<result property="UPD_DT" column="UPD_DT" />
+		<result property="UPD_ID" column="UPD_ID" />
+		<result property="TRK_DT" column="TRK_DT" />
+		<result property="TRK_ID" column="TRK_ID" />
+
+	</resultMap>
+	
+	<insert id="IDJOIN1" parameterType="java.util.Map">
+<!-- 		INSERT INTO USERTBL -->
+<!-- 		values(#{USER_ID},null,null,null,null,null,null, -->
+<!-- 		null,null,null,null,null,null,null,null,null,null, -->
+<!-- 		NOW(),#{UPD_ID},NOW(),#{TRK_ID}) -->
+<!-- 		insert into usertbl -->
+<!-- 		values (#{user_id},null,null,null,null,null,null, -->
+<!-- 		null,null,null,null,null,null,null,null,null,null, -->
+<!-- 		now(),#{upd_id},now(),#{trk_id}) -->
+		INSERT INTO USERTBL
+		values(#{USER_ID},null,null,null,null,null,null,
+		null,null,null,null,null,null,null,null,null,null,
+		NOW(),#{UPD_ID},NOW(),#{TRK_ID})
+	</insert>
+
+	<select id="getUser" resultType="src.bean.UserTBLBean">
+		SELECT * FROM UserTBL WHERE
+		DEL_FLG=0 and USER_ID = #{USER_ID}
+	</select>
+
+
+	<select id="getAllUser" resultType="src.bean.UserTBLBean">
+		SELECT * FROM UserTBL where
+		DEL_FLG=0
+	</select>
+	<select id="getAllUserLimit" resultType="src.bean.UserTBLBean">
+		select
+<!-- 		USER_NAME, -->
+		USER_ID,USER_PASSWORD,USER_CCFNAME,USER_CCLNAME,USER_KATAFNAME,USER_KATALNAME,
+		USER_ADDRESS,USER_PHONE,
+		( SELECT CASE
+		WHEN USER_DEPARTMENT THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE
+		CODE_BUNRUI_NO="002" and USER_DEPARTMENT = CODE_NO )
+		AS
+		USER_DEPARTMENT,
+		( SELECT CASE
+		WHEN USER_RANK THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE CODE_BUNRUI_NO="003" and USER_RANK = CODE_NO )
+		AS USER_RANK,
+		USER_GENDER,USER_BIRTHDAY,USER_EMAIL,USER_KAKAOTALK,USER_INFO,USER_STATUS,DEL_FLG,UPD_DT,UPD_ID
+		from usertbl where DEL_FLG=0 order by USER_DEPARTMENT asc, USER_RANK desc limit #{page},20
+	</select>
+
+	<select id="getSearchUser" resultType="src.bean.UserTBLBean">
+		SELECT * FROM UserTBL
+		where DEL_FLG=0 and ${column} like CONCAT('%',
+		#{keyword},
+		'%')
+	</select>
+	<select id="getSearchUserLimit" resultType="src.bean.UserTBLBean">
+		select
+		<!-- 		USER_NAME, -->
+		
+		USER_ID,USER_PASSWORD,USER_CCFNAME,USER_CCLNAME,USER_KATAFNAME,USER_KATALNAME,
+		USER_ADDRESS,USER_PHONE,
+		( SELECT CASE
+		WHEN USER_DEPARTMENT THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE
+		CODE_BUNRUI_NO="002" and USER_DEPARTMENT = CODE_NO )
+		AS
+		USER_DEPARTMENT,
+		( SELECT CASE
+		WHEN USER_RANK THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE CODE_BUNRUI_NO="003" and USER_RANK = CODE_NO )
+		AS USER_RANK,
+		USER_GENDER,USER_BIRTHDAY,USER_EMAIL,USER_KAKAOTALK,USER_INFO,USER_STATUS,DEL_FLG,UPD_DT,UPD_ID
+		from usertbl where DEL_FLG=0 and ${column} like CONCAT('%',
+		#{keyword},
+		'%') order by USER_DEPARTMENT,USER_RANK,USER_CCFNAME limit
+		${page},20
+	</select>
+	<select id="getSearchUser2" resultType="src.bean.UserTBLBean">
+		SELECT * FROM UserTBL
+		where DEL_FLG=0 and ${column} in (SELECT code_no FROM codtbl WHERE
+		CODE_BUNRUI_NO =#{code} and ssk_nm like CONCAT('%',
+		#{keyword},
+		'%'))
+	</select>
+	<select id="getSearchUserLimit2" resultType="src.bean.UserTBLBean">
+		select
+		<!-- 		USER_NAME, -->
+		
+		USER_ID,USER_PASSWORD,USER_CCFNAME,USER_CCLNAME,USER_KATAFNAME,USER_KATALNAME,
+		USER_ADDRESS,USER_PHONE,
+		( SELECT CASE
+		WHEN USER_DEPARTMENT THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE
+		CODE_BUNRUI_NO="002" and USER_DEPARTMENT = CODE_NO )
+		AS
+		USER_DEPARTMENT,
+		( SELECT CASE
+		WHEN USER_RANK THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE CODE_BUNRUI_NO="003" and USER_RANK = CODE_NO )
+		AS USER_RANK,
+		USER_GENDER,USER_BIRTHDAY,USER_EMAIL,USER_KAKAOTALK,USER_INFO,USER_STATUS,DEL_FLG,UPD_DT,UPD_ID
+		from usertbl where DEL_FLG=0 and ${column} in (SELECT code_no FROM
+		codtbl WHERE CODE_BUNRUI_NO =#{code} and ssk_nm like CONCAT('%',
+		#{keyword},
+		'%') ) order by USER_DEPARTMENT,USER_RANK,USER_CCFNAME limit
+		${page},20
+	</select>
+
+
+
+	<select id="getAllDownload" resultType="src.bean.FileListInfoTBLBean">
+		SELECT * FROM
+		filelistinfotbl where DEL_FLG=0
+	</select>
+	<select id="getAllDownloadLimit" resultType="src.bean.FileListInfoTBLBean">
+		SELECT FILE_INDEX,FILE_NAME,FILE_TYPE,FILE_INFO,FILE_SIZE,FILE_DATA,DEL_FLG,UPD_DT,UPD_ID,TRK_DT,TRK_ID,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=filelistinfotbl.trk_id)USER_NAME FROM
+		filelistinfotbl where DEL_FLG=0 order by FILE_NAME limit #{page},20
+		<!-- SELECT * FROM
+		filelistinfotbl where DEL_FLG=0 order by FILE_NAME limit #{page},20 -->
+	</select>
+
+	<select id="getSearchDownload" resultType="src.bean.FileListInfoTBLBean">
+		SELECT * FROM
+		filelistinfotbl where DEL_FLG=0 and FILE_NAME like CONCAT('%',
+		#{keyword},
+		'%') 
+		
+		
+		
+	</select>
+	<select id="getSearchDownloadLimit" resultType="src.bean.FileListInfoTBLBean">
+		<!-- SELECT * FROM
+		filelistinfotbl where DEL_FLG=0 and FILE_NAME like CONCAT('%',
+		#{keyword},
+		'%') order by FILE_NAME limit ${page},20 -->
+		
+		SELECT FILE_INDEX,FILE_NAME,FILE_TYPE,FILE_INFO,FILE_SIZE,FILE_DATA,DEL_FLG,UPD_DT,UPD_ID,TRK_DT,TRK_ID,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=filelistinfotbl.trk_id)USER_NAME FROM
+		filelistinfotbl where DEL_FLG=0 and FILE_NAME like CONCAT('%',
+		#{keyword},
+		'%') order by FILE_NAME limit ${page},20
+		
+	</select>
+
+	<select id="getDownload" resultMap="file">
+		SELECT * FROM filelistinfotbl
+		where DEL_FLG=0 and FILE_INDEX =#{FILE_INDEX}
+	</select>
+
+	<select id="getUserId" resultType="src.bean.UserTBLBean">
+		SELECT USER_ID FROM UserTBL WHERE
+		USER_EMAIL = #{USER_EMAIL}
+	</select>
+<!-- 	<insert id="setUserJoin" parameterType="java.util.Map"> -->
+<!-- 		INSERT INTO USERTBL -->
+<!-- 		values( -->
+<!-- 		#{USER_NAME}, -->
+<!-- 		#{USER_ID},#{USER_PASSWORD},#{USER_CCFNAME},#{USER_CCLNAME},#{USER_KATAFNAME}, -->
+<!-- 		#{USER_KATALNAME},#{USER_ADDRESS}, -->
+<!-- 		#{USER_PHONE},#{USER_DEPARTMENT},#{USER_RANK},#{USER_GENDER},#{USER_BIRTHDAY}, -->
+<!-- 		#{USER_EMAIL},#{USER_KAKAOTALK},#{USER_INFO},"2",#{DEL_FLG},NOW(),#{UPD_ID}, -->
+<!-- 		NOW(),#{TRK_ID}); -->
+<!-- 	</insert> -->
+	<insert id="InsertUserID" parameterType="java.util.Map">
+		INSERT INTO
+		USERIDTBL(USER_ID,DEL_FLG,UPD_DT,UPD_ID,TRK_DT,TRK_ID)
+		values(#{USER_ID},#{DEL_FLG},NOW(),#{UPD_ID},NOW(),#{TRK_ID})
+	</insert>
+
+	<select id="DupCheck" parameterType="String" resultType="src.bean.UserIDTBLBean">
+		SELECT *
+		FROM USERIDTBL WHERE USER_ID = #{USER_ID}
+	</select>
+	<select id="DupCheck1" resultType="src.bean.UserTBLBean">
+		SELECT *
+		FROM USERTBL where user_id=#{USER_ID} and USER_PASSWORD is null 
+
+	</select>
+	
+	<update id="updateMember_1" parameterType="java.util.Map">
+		UPDATE USERTBL SET
+		USER_PASSWORD=#{USER_PASSWORD1},
+<!-- 		USER_NAME=#{USER_NAME}, -->
+		USER_CCFNAME=#{USER_CCFNAME},USER_CCLNAME=#{USER_CCLNAME},
+		USER_KATAFNAME=#{USER_KATAFNAME},USER_KATALNAME=#{USER_KATALNAME},
+		USER_ADDRESS=#{USER_ADDRESS},USER_PHONE=#{USER_PHONE},
+		USER_DEPARTMENT=#{USER_DEPARTMENT},USER_RANK=#{USER_RANK},
+		USER_GENDER=#{USER_GENDER},USER_BIRTHDAY=#{USER_BIRTHDAY},
+		USER_EMAIL=#{USER_EMAIL},USER_KAKAOTALK=#{USER_KAKAOTALK},
+		USER_INFO=#{USER_INFO}
+		WHERE USER_ID = #{USER_ID}
+	</update>
+	<update id="updateMember_2" parameterType="java.util.Map">
+		UPDATE USERTBL SET
+<!-- 		USER_NAME=#{USER_NAME} -->
+		USER_CCFNAME=#{USER_CCFNAME},USER_CCLNAME=#{USER_CCLNAME},
+		USER_KATAFNAME=#{USER_KATAFNAME},USER_KATALNAME=#{USER_KATALNAME},
+		USER_ADDRESS=#{USER_ADDRESS},
+		USER_PHONE=#{USER_PHONE},USER_DEPARTMENT=#{USER_DEPARTMENT},
+		USER_RANK=#{USER_RANK},USER_GENDER=#{USER_GENDER},USER_BIRTHDAY=#{USER_BIRTHDAY},
+		USER_EMAIL=#{USER_EMAIL},USER_KAKAOTALK=#{USER_KAKAOTALK},USER_INFO=#{USER_INFO}
+		WHERE USER_ID = #{USER_ID}
+	</update>
+	<select id="getUserInfo" resultType="src.bean.UserTBLBean">
+		SELECT * FROM USERTBL WHERE
+		USER_ID = #{USER_ID} AND DEL_FLG = "0"
+	</select>
+	
+	<update id="setUserJoin" parameterType="java.util.Map">
+		UPDATE USERTBL set
+			USER_PASSWORD=#{USER_PASSWORD},
+			USER_CCFNAME=#{USER_CCFNAME},USER_CCLNAME=#{USER_CCLNAME},
+			USER_KATAFNAME=#{USER_KATAFNAME},
+ 			USER_KATALNAME=#{USER_KATALNAME},USER_ADDRESS=#{USER_ADDRESS},
+			USER_PHONE=#{USER_PHONE},USER_DEPARTMENT=#{USER_DEPARTMENT},USER_RANK=#{USER_RANK},
+			USER_GENDER=#{USER_GENDER},USER_BIRTHDAY=#{USER_BIRTHDAY},USER_EMAIL=#{USER_EMAIL},
+			USER_KAKAOTALK=#{USER_KAKAOTALK},USER_INFO=#{USER_INFO},UPD_DT=NOW(),del_flg='0',user_status='2'
+		WHERE USER_ID = #{USER_ID}
+	</update>
+	
+</mapper>

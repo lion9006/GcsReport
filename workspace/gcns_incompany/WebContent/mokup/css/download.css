@@ -1,0 +1,112 @@
+﻿
+@font-face{
+ font-family: "GenShinGothic-P-Normal"; 
+ src: url("/font/GenShinGothic-P-Normal.ttf");      
+ url("/font/GenShinGothic-P-Normal.ttf")  format("truetype"), /* Safari, Android, iOS */        
+}
+
+/* Font Setting */
+body{font-family: GenShinGothic-P-Normal,’나눔고딕’,ng,sans-serif}
+
+a {
+    text-decoration: none;
+}
+
+#download_list a:hover { 
+    color:#ff6211; 
+} 
+
+img {
+    border: 0;
+}
+
+.h2_tit span {
+    display: inline-block;
+    margin-left: 8px;
+    font-family: 'Malgeun Gothic','맑은 고딕', dotum,"돋움",Malgun Gothic,tahoma,sans-serif;
+    font-size: 10px;
+    color: #999;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+}
+
+.h2_tit {
+    font-family: '나눔명조','nanummyeongjo',nanummyeongjo;
+    font-size: 20px;
+    color: #111;
+    font-weight: bold;
+    width:890px;
+    height:50px;
+    left: 5px;
+}
+
+.bt5px {
+    border-top: 5px solid #4e9671;
+    background: #fff;
+    opacity: .5;
+    /* internet explorer */
+    -khtml-opacity: 0.93;
+    /* khtml, old safari */
+    -moz-opacity: 0.93;
+    /* mozilla, netscape */
+    opacity: 0.93;
+    /* fx, safari, opera */
+    -webkit-opac 
+}
+
+#content .loBB {
+    position: absolute;
+    right: 48%;
+    margin-right: -480px;
+    top: 25px;
+    width: 950px;
+    height: 650px;
+    padding: 20px;
+    padding-top: 0px;
+    background: #fff;
+    z-index: 50;
+}
+
+#logintool {
+    top: -5px;
+    width: 890px;
+    text-align: left;
+}
+
+#log_op {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    border-bottom: 5px solid #4e9671;
+    background: #fff;
+}
+
+#search {
+    position: relative;
+    text-align: right;
+}
+
+#download_table {
+    border: 1px solid #2d9ad3;
+}
+
+
+#download_list{
+    font-family: '나눔명조','nanummyeongjo',nanummyeongjo;
+    border-bottom: 1px solid #82B5DF;
+}
+
+#download_list td {
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+    font-size: 15px;
+}
+
+#download_list td:last-child {
+    border-right: 0;
+}
+#downloadlog {
+    position:relative;
+    left:-355px;
+    top:17px;
+   
+}

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.multipart.parser" value="jakarta" />
+	<constant name="struts.multipart.saveDir" value="/upload/temp" />
+	<constant name="struts.multipart.maxSize" value="16777215" />
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+	<package name="default" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+		<action name="login" class="src.login.action.LoginAction">
+			<result name="success">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<action name="systemerror" class="src.error.ErrorAction">
+			<result name="success">/WEB-INF/jsp/error.jsp</result>
+		</action>
+		<action name="logout" class="src.main.action.LogoutAction">
+			<result name="SUCCESS">/WEB-INF/jsp/login.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<action name="home" class="src.main.action.HomeAction">
+			<result name="success">/WEB-INF/jsp/gcslog.jsp</result>
+		</action>
+		 <action name="loginAccess" class="src.login.action.LoginAccessAction">
+         <interceptor-ref name="prepare" />
+         <interceptor-ref name="modelDriven" />
+         <interceptor-ref name="params" />
+         <result name="SUCCESS">/WEB-INF/jsp/main.jsp</result>
+         <result name="SUCCESS2">/WEB-INF/jsp/main_manager.jsp</result>
+         <result name="ERROR">/WEB-INF/jsp/login.jsp</result>
+         <result name="ERROR2">/WEB-INF/jsp/SystemError.jsp</result>
+        </action>
+		<action name="memberList" class="src.member.action.MemberListAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/memberList.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="memberListSearch" class="src.member.action.MemberListSearchAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/memberList.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="downloadList" class="src.download.action.DownloadListAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/download.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="downloadListSearch" class="src.download.action.DownloadListSearchAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/download.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="download" class="src.download.action.DownloadAction">
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+
+		<action name="IdSearch" class="src.member.action.IdSearchAction">
+			<result name="success">/WEB-INF/jsp/idSearch.jsp</result>
+		</action>
+		<action name="IdSearchAccess" class="src.member.action.IdSearchAccessAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">IdSearch</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/idSearchScriptFail.jsp</result>
+		</action>
+		<action name="MemberJoin" class="src.member.action.MemberJoinAction">
+			<result name="success">/WEB-INF/jsp/join.jsp</result>
+		</action>
+		<action name="MemberJoinAccess" class="src.member.action.MemberJoinAccessAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/login.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/joinScript.jsp</result>
+		</action>
+		<action name="MemberUpdate" class="src.member.action.MemberUpdateAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/update.jsp</result>
+			<result name="SUCCESS2">/WEB-INF/jsp/main.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="MemberUpdateAccess" class="src.member.action.MemberUpdateAccessAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/main.jsp</result>
+			<result name="SUCCESS2">/WEB-INF/jsp/main_manager.jsp</result>
+<!-- 			<result name="SUCCESS" type="chain"> -->
+<!-- 				<param name="actionName">loginAccess</param> -->
+<!-- 			</result> -->
+<!-- 			<result name="SUCCESS2" type="chain"> -->
+<!-- 				<param name="actionName">loginAccess</param> -->
+<!-- 			</result> -->
+			<result name="ERROR">/WEB-INF/jsp/updateScript.jsp</result>
+		</action>
+		<action name="main" class="src.main.action.MainAction">
+			<result name="SUCCESS">/WEB-INF/jsp/main.jsp</result>
+			<result name="SUCCESS2">/WEB-INF/jsp/main_manager.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="memberListManager" class="src.manager.action.MemberListManagerAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="SUCCESS">/WEB-INF/jsp/memberListManager.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="callUpdateScreen" class="src.manager.action.MemberUpdateScreenManagerAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/memberUpdateScreen.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="deleteMember" class="src.manager.action.MemberDeleteManagerAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">memberListManager</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="UserIDAction" class="src.manager.action.UserIDAction">
+			<result name="success">/WEB-INF/jsp/memberID.jsp</result>
+		</action>
+		<action name="InsertUserID" class="src.manager.action.UserIDRegAction">
+			<result name="SUCCESS">/WEB-INF/jsp/memberID.jsp</result>
+		</action>
+		<action name="DupCheck" class="src.manager.action.DuplicationCheckAction">
+			<result type="json"></result>
+		</action>
+		<action name="DupCheck1" class="src.member.action.IdChkAction">
+			<result type="json"></result>
+		</action>		
+		<action name="memberupdateManager" class="src.manager.action.MemberUpdateManagerAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">memberListManager</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="memberSearchManager" class="src.manager.action.MemberSearchManagerAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/memberListManager.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		<action name="bbsList" class="src.board.action.BbsListAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/bbsList.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/error.jsp</result>
+		</action>
+
+		<action name="bbsView" class="src.board.action.BbsViewAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/bbsView.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/bbs_error2.jsp</result>
+		</action>
+		
+		 <action name="bbsDownload" class="src.board.action.BbsDownloadAction">
+			 <interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			 <result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>	
+		 </action>
+	
+		<action name="comWrite" class="src.board.action.BbsCommentWriteAction">
+			<interceptor-ref name="prepare"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">bbsView</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/bbs_error.jsp</result>
+		</action>
+		
+		<action name="comDelete" class="src.board.action.BbsCommentDeleteAction">
+			<interceptor-ref name="prepare"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+		
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">bbsView</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/bbs_error.jsp</result>
+		</action>
+		
+
+
+		<action name="bbsWrite" class="src.board.action.BbsWriteAction">
+			<result name="success">/WEB-INF/jsp/bbs_write.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/error.jsp</result>
+		</action>
+
+		<action name="bbsWriteAccess" class="src.board.action.BbsWriteAccessAction">
+			<interceptor-ref name="prepare"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<!-- <result name="SUCCESS" type="chain"> -->
+			<!-- <param name="actionName">bbsWrite</param> -->
+			<!-- </result> -->
+			<result name="SUCCESS" type="redirect">/bbsList</result>
+			<result name="ERROR">/WEB-INF/jsp/SystemError.jsp</result>
+		</action>
+		
+		<action name="bbsUpdate" class="src.board.action.BbsUpdateAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<result name="SUCCESS">/WEB-INF/jsp/bbs_update.jsp</result>
+			<result name="ERROR">/WEB-INF/jsp/bbs_error.jsp</result>
+		</action>
+		<action name="bbsUpdateAccess" class="src.board.action.BbsUpdateAccessAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="fileUpload"/>
+			<interceptor-ref name="params" />
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">bbsView</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/bbs_error2.jsp</result><!-- error ->error2 -->
+		</action>
+		
+		<action name="bbsDelete" class="src.board.action.BbsDeleteAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+<!-- 			<result name="SUCCESS" type="redirectAction">bbsList.action?searchOption1=${searchOption1}&amp;searchOption2=${searchOption2}&amp;searchInfo=${searchInfo}&amp;page=${page}</result> -->
+			<result name="SUCCESS" type="chain">
+				<param name="actionName">bbsList</param>
+			</result>
+			<result name="ERROR">/WEB-INF/jsp/bbs_error.jsp</result>
+		</action>
+	</package>
+</struts>

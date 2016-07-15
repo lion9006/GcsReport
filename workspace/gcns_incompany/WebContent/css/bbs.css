@@ -1,0 +1,216 @@
+
+@font-face{
+ font-family: "GenShinGothic-P-Normal"; 
+ src: url("/font/GenShinGothic-P-Normal.ttf");      
+ url("/font/GenShinGothic-P-Normal.ttf")  format("truetype"), Safari, Android, iOS        
+}
+
+/* Font Setting */
+body{font-family: GenShinGothic-P-Normal,¡¯³ª´®°íµñ¡¯,ng,sans-serif}
+
+a {
+    text-decoration: none;
+}
+
+#bbs_list a:hover { 
+    color:#ff6211; 
+} 
+
+img {
+    border: 0;
+}
+
+.h2_tit span {
+    display: inline-block;
+    margin-left: 8px;
+    font-family: 'Malgeun Gothic','¸¼Àº °íµñ', dotum,"µ¸¿ò",Malgun Gothic,tahoma,sans-serif;
+    font-size: 10px;
+    color: #999;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+}
+
+.h2_tit {
+    font-family: '³ª´®¸íÁ¶','nanummyeongjo',nanummyeongjo;
+    font-size: 20px;
+    color: #111;
+    font-weight: bold;
+    width:890px;
+    height:50px;
+    left: 5px;
+}
+
+.bt5px {
+    border-top: 5px solid #4e9671;
+    background: #fff;
+    opacity: .5;
+    /* internet explorer */
+    -khtml-opacity: 0.93;
+    /* khtml, old safari */
+    -moz-opacity: 0.93;
+    /* mozilla, netscape */
+    opacity: 0.93;
+    /* fx, safari, opera */
+    -webkit-opac 
+}
+
+#content .loBB {
+    position: absolute;
+    right: 48%;
+    margin-right: -480px;
+    top: 25px;
+    width: 950px;
+    height: 650px;
+    padding: 20px;
+    padding-top: 0px;
+    background: #fff;
+    z-index: 50;
+}
+
+#logintool {
+    top: -5px;
+    width: 890px;
+    text-align: left;
+}
+
+#log_op {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    border-bottom: 5px solid #4e9671;
+    background: #fff;
+}
+
+#search {
+    position: relative;
+    text-align: right;
+}
+
+#bbs_table {
+    border: 1px solid #2d9ad3;
+}
+
+
+#bbs_list{
+    font-family: '³ª´®¸íÁ¶','nanummyeongjo',nanummyeongjo;
+    border-bottom: 1px solid #82B5DF;
+}
+
+#bbs_list td {
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+    font-size: 15px;
+}
+
+#bbs_list td:last-child {
+    border-right: 0;
+}
+#downloadlog {
+    position:relative;
+    left:-355px;
+    top:17px;
+   
+}
+
+
+
+
+.title1 {
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid #dedede;
+    background-color: #f3f3f3;
+    border-top: 4px solid #0099ff;
+    height: 45px;
+}
+
+.title_size {
+    font-size: 19px;
+    text-align: left;
+    border-bottom: 2px solid #e2e2e2;
+}
+
+table {
+    border-collapse: collapse;
+    font: 15px Verdana,Arial;
+    word-spacing: -1px;
+}
+
+.gcs {
+    align-content: center;
+    height: 30px;
+}
+
+table > tr {
+    width: 1800px;
+}
+
+.txtbox {
+    position: relative;
+    left: 0px;
+    right: 190px;
+}
+
+.td {
+    position: relative;
+    left: 20px;
+}
+#category{
+	width:130px;
+}
+
+
+
+.file_input_textbox {
+	float: left;
+	width: 280px;
+}
+ 
+.file_input_div {
+	position: absolute;
+	left: 285px;
+	width: 100px;
+	height: 23px;
+	overflow: hidden;
+}
+ 
+ .file_input_div2 {
+	left: 390px;
+	position: absolute;
+	width: 100px;
+	height: 23px;
+	overflow: hidden;
+}
+.file_input_button {
+	width: 100px;
+	height: 22px;
+	border: 0;
+	position: relative;
+	top: 0px;
+	background-color: #33BB00;
+	color: #FFFFFF;
+	border-style: solid;
+}
+
+.file_input_button_cln {
+	width: 100px;
+	height: 22px;
+	border: 0;
+	position: relative;
+	top: 0px;
+	background-color: #FF1100;
+	color: #FFFFFF;
+	border-style: solid;
+}
+
+.file_input_hidden {
+	font-size: 45px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	opacity: 0;
+	 
+	filter: alpha(opacity=0);
+	-ms-filter: "alpha(opacity=0)";
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+}

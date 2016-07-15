@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>掲示板 作成</title>
+	<link rel="stylesheet" href="css/bbs.css" />
+	<script type="text/javascript">
+		
+		function bbsWrite(){
+			var bbsform = document.theform;
+			if(bbsform.title.value == ''){
+				alert('題目を入力してください。');
+				document.theform.title.focus();
+			}else if(bbsform.textBody.value ==''){
+				alert('内容を入力してください。');
+				document.theform.textBody.focus();
+			}else
+				document.theform.submit();
+		}
+		
+		function bbsFileupcnl(){
+			document.theform.fileName.value="ファイルのサイズは、16MBまで可能です。";
+			document.theform.fileTxt.value="";
+			document.getElementById("fileCnl").style.visibility="hidden";
+		}
+		
+		function bbsWriteCancel(){
+			var msgWrite = confirm("作成をキャンセルしますか。");
+			if(msgWrite)
+				location.href='bbs_list.html';
+		}
+		
+		function fileSelected(){
+			document.getElementById('fileName').value=document.getElementById('fileTxt').value;
+			document.getElementById("fileCnl").style.visibility="visible";
+		}
+		
+		function pageSet(){
+			document.getElementById("fileCnl").style.visibility="hidden";
+		}
+	</script>
+</head>
+<body onload="pageSet();">
+    
+    <center>
+        <section id="content" style="margin-top:-30px">          
+            <div class="loBB bt5px" id="log_op">
+                <div id="logintool">
+                    <img src="img/bbs/title.png" />                   
+                    <div style="overflow:hidden; width:890px;">
+                        
+						<form method="post" action="bbs_list.html" name="theform" autocomplete="off">
+							<table border="0" cellpadding="0" cellspacing="0" width="890" id="join1" valign="center">
+								<tr>
+									<td height="34" class="title_size" colspan="2"><img src="Img/join/join_title_leftline.png" /> 作成</td>
+								</tr>
+								<tr class="gcs">
+									<td class="td">カテゴリー  </td>
+									<td align="left" class="txtbox">
+				                        <select name="category" id="category">
+				                            <option value="1">一般</option>
+											<option value="2">お知らせ</option>
+				                            <option value="3">資料</option>
+				                            <option value="4">情報</option>
+				                        </select>
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td class="td" >題目  </td>
+									<td align="left" class="txtbox">
+										<input type="text" maxlength="40" name="title" id="num" size="90" value="" placeholder="タイトルを入力してください。">
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td class="td" >内容  </td>
+									<td align="left" class="txtbox">
+										<textarea name="textBody" id="num" rows="25" cols="90" value="" placeholder="本文を入力してください。" style="resize: none;"></textarea>
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td class="td" >アップロード  </td>
+									<td align="left" class="txtbox">
+<!-- 										<input type="file" name="bbsfile" onclick="fileSelected();" value="aa"><input type="button" id="fileCnl" onclick="fileBoxRst()" value="キャンセル"> -->
+<!-- 										&nbsp;&nbsp;ファイルのサイズは、16MBまで可能です。 -->
+										<div>
+											<input type="text" id="fileName" class="file_input_textbox" readonly="readonly" value="ファイルのサイズは、16MBまで可能です。"/>
+											<div class="file_input_div">
+												<input type="button" value="ファイル選択" class="file_input_button" />
+												<input type="file" id="fileTxt" class="file_input_hidden" onchange="fileSelected();" />
+											</div>
+											<div class="file_input_div2">
+												<input type="button" id="fileCnl" onclick="bbsFileupcnl()" value="X" class="file_input_button_cln"/>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<table align="center">
+											<tr>
+												<td width="890"  height="10" class="title_size"></td>
+											</tr>
+											<tr align="center">
+												<td height="40">
+													<input type="button" onclick="bbsWrite();" value="     作成     ">&nbsp;&nbsp;&nbsp;
+													<input type="button" onclick="pageSet(); reset()" value=" リセット ">
+													<input type="button" onclick="bbsWriteCancel();" value="キャンセル">
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</form>
+
+                    </div>
+                </div>
+            </div> 
+        </section>
+    </center>
+</body>
+</html>

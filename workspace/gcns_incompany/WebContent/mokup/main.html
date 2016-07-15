@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>GCS Shared System</title>
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script>
+    function download() {
+        main.location.href = "download.html";
+        mouseclick("hover2");
+    }
+
+    function home() {
+        main.location.href = "gcslog.html";
+        mouseclick("hover1");
+    }
+
+    function member() {
+
+        main.location.href = "memberList.html";
+        mouseclick("hover3");
+       
+    }
+    
+    function bbs(){
+    	main.location.href = "bbs_list.html";
+    	mouseclick("hover4");
+    }
+    
+    function mouseclick(id) {
+        switch (id) {
+            case "hover1":
+                document.getElementById(id).style.backgroundPosition = '0 -32px';
+                document.getElementById(id).style.border = "solid 1px white";
+                document.getElementById("hover2").style.backgroundPosition = "0 0";
+                document.getElementById("hover3").style.backgroundPosition = "0 0";
+                document.getElementById("hover4").style.backgroundPosition = "0 0";
+                document.getElementById("mainframe").style.height = "500px";
+                break;
+            case "hover2":
+                document.getElementById("hover1").style.backgroundPosition = "0 0";
+                document.getElementById(id).style.backgroundPosition = '0 -32px';
+                document.getElementById(id).style.border = "solid 1px white";
+                document.getElementById("hover3").style.backgroundPosition = "0 0";
+                document.getElementById("hover4").style.backgroundPosition = "0 0";
+                document.getElementById("mainframe").style.height = "740px";
+                
+                break;
+            case "hover3":
+                document.getElementById("hover1").style.backgroundPosition = "0 0";
+                document.getElementById("hover2").style.backgroundPosition = "0 0";
+                document.getElementById(id).style.backgroundPosition = '0 -32px';
+                document.getElementById(id).style.border = "solid 1px white";
+                document.getElementById("hover4").style.backgroundPosition = "0 0";
+                document.getElementById("mainframe").style.height = "740px";
+                break;
+
+            case "hover4":
+                document.getElementById("hover1").style.backgroundPosition = "0 0";
+                document.getElementById("hover2").style.backgroundPosition = "0 0";
+                document.getElementById("hover3").style.backgroundPosition = "0 0";
+                document.getElementById(id).style.backgroundPosition = '0 -32px';
+                document.getElementById(id).style.border = "solid 1px white";
+                document.getElementById("mainframe").style.height = "740px";
+                break;
+        }
+    }
+
+    </script>
+
+
+
+</head>
+<body>
+    <table border="0" cellpadding="0" cellspacing="0" width="1024" align="center" id="menu">
+        <tr>
+            <td></td>
+            <td colspan="4" style="text-align:right;"><a href="update.html"><img src="img/main/info_update.jpg" class="mousePointer" /></a>
+            <a href="index.html"><img src="img/main/logout.jpg" class="mousePointer" href="index.html" /></a></td>
+            <td></td>
+        </tr>
+        <tr style="margin-bottom:50px">
+            <td></td>
+            <td colspan="4" style="text-align: right; font-family: tahoma; font-size: 12px;"><img src="img/index/icon.gif" width="15" height="12" border="0"><font color="#848484">GCS_キムウンジ(教育生)</font></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="4"><img src="img/main/title.jpg" /><img src="img/main/toon.jpg" width="400" /></td>
+            <td></td>
+        </tr>
+        <tr style="height:32px;">
+            <th width="128" class="gradient1"></th>
+            <th width="192" id="hover1" onclick="home()"></th>
+            <th width="192" id="hover2" onclick="download()"></th>
+            <th width="192" id="hover3" onclick="member()"></th>
+            <th width="192" id="hover4" onclick="bbs()"></th>
+            <th width="128" class="gradient2"> </th>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <center>
+                    <iframe src="gcslog.html" name="main" id="mainframe" frameborder="0" width="900" height="500" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                </center>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

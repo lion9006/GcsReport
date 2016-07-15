@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type = "text/css" href="css/bbs_view.css" >
+<title>view</title>
+<script type="text/javascript">
+function Deleted(){
+	 var returnValue = confirm("削除しますか。");
+	    if(returnValue == true){
+	       location.href = "bbs_list.html";
+	    }
+	
+}
+
+function comment_delete(){
+ 	var returnValue = confirm("コメント削除しますか。");
+ 	if(returnValue == true){
+ 		 location.href = "bbs_view.html";
+ 	}
+}
+</script>
+</head>
+<body>
+    
+    <center>
+        <section id="content" style="margin-top:-30px">          
+               <div class="loBB bt5px" id="log_op">
+                <div id="logintool">
+                    <img src="img/bbs/title.png" />                   
+                    <div style="overflow:hidden; width:890px;">
+                        
+					
+							<table border="0" cellpadding="0" cellspacing="0" width="890" id="join1" valign="center">
+								<tr>
+									<td height="34" class="title_size" colspan="2"><img src="img/join/join_title_leftline.png" /> 詳細</td>
+								</tr>
+								
+								
+								
+								<tr class="gcs">
+									<td width="200" class="td" >カテゴリー  </td>
+									<td align="left" class="td">一般</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >題目  
+									</td>
+									<td align="left" class="td">	始めまして、私は田中です。		
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >作成者  
+									</td>
+									<td align="left" class="td">徐東駿　＜ソドンジュン＞
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >作成日 
+									</td>
+									<td align="left" class="td">	2015.02.22 15:12:13	
+									</td>
+								</tr>
+
+								<tr class="gcs">
+									<td width="200" class="td" >添付ファイル </td>
+									<td align="left" class="td">
+										<a href=#>window.exe</a>
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >内容  </td>
+									<td height ="245" align="left" class="td" >
+										明けましておめでとございます。
+									</td>
+								</tr>
+					
+					<!--button부분   -->
+								<tr>
+																									
+									  <table border="0"align="center"width="890"height="50">
+											<tr>
+												<td align="right"><input type="button" value="修正" onClick="location.href='bbs_update.html'"/>
+												<input type="button" value="削除" onClick="Deleted()"/>
+												<input type="button" value="リスト" onClick="location.href='bbs_list.html'" />
+												</td>
+											</tr>
+										</table>
+									
+								</tr>
+							</table>
+							
+					</div>
+                </div>
+                <!--댓글부분  --> 
+
+            <div  width="890px">
+            	<div ><b><i>コメント</i></b></div>
+            	<div id="ripple">
+           			 <table width = "850px">
+        	                <tr>
+        	   					<th width="20%" align="left" >鈴木(22222222)  &nbsp;&nbsp; </th>
+        						<td align="left">2015.2.23 16:12:16	</td>       						
+        					</tr>
+        					<tr>
+        	
+        						<td colspan="2"align=""left" >おめでとございます。おめでとございます。</td>
+        						<td align="right"><img src="img/bbs/x.png" width="10px" onclick="comment_delete()" alt="削除" ></td>
+        						        						
+        					</tr>	
+        					</table>
+        		</div>
+        		<div id="ripple">
+           			 <table width = "850px">
+        	                <tr >
+        	
+        						<th width="20%" align="left" >木村(11111111)&nbsp; &nbsp;</th>
+        						<td align="left">2015.2.25 18:19:13	</td>       						
+        					</tr>
+        					<tr>
+        	
+        						<td colspan="2"align=""left" >おーーーーめでとございます。</td>
+        						<td align="right"><img width="10px" onclick="comment_delete()"src="img/bbs/x.png" /></td>  						
+        					</tr>	
+        					</table>
+        		</div>
+        		<div style="clear:both;"></div>
+        		<div id="ripple_write">			
+        				   <table width="890px" border="0">
+        			        	<tr >
+        						 	<td align="left">
+        									<input type="text" size="105"value="200字以下作成してください">
+        							</td>
+        							<td align="right">
+        									<a href="#" class="myButton">コメント書く</a>
+									</td>
+        					    </tr>        	
+       						</table>
+				</div>           
+             </div>
+            </div>
+         </section>
+       </center>
+</body>
+
+</html>

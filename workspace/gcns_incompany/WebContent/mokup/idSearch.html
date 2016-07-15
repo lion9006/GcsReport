@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>検索</title>
+    <link rel="stylesheet" href="css/inSearch.css" />
+    <script>
+        function ok() {
+            var email = document.theform.email;
+            var email2 = document.theform.email2;
+            if (email.value == "" || email2.value=="") {
+                alert("メールを入力してください。")
+                return false;
+            }
+            alert("社員番号は '11000012'です。");
+            location.href = "index.html";
+        }
+        function back() {
+            location.href = "index.html";
+        }
+        function SetEmailTail(emailValue) {
+            var email = document.all("email")
+            var emailTail = document.all("email2")
+
+            if (emailValue == "notSelected")
+                return;
+            else if (emailValue == "直接入力") {
+                emailTail.readOnly = false;
+                emailTail.value = "";
+                emailTail.focus();
+            } else {
+                emailTail.readOnly = true;
+                emailTail.value = emailValue;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <center>
+        <table border="0" cellpadding="0" cellspacing="0" width="1024" id="search">
+            <tr>
+                <td colspan="3" height="45"><img src="Img/join/join_logo.png" /></td>
+            </tr>
+            <tr>
+                <td class="title1">社員番号検索</td>
+            </tr>
+            <tr>
+                <td height="35">* 入力してください。</td>
+            </tr>
+        </table>
+        <form method="post" action="/registration" name="theform" autocomplete="off">
+            <table border="0" cellpadding="0" cellspacing="0" width="1004" id="search1" valign="center">
+                <tr>
+                    <td height="34" class="title_size" colspan="2"><img src="Img/join/join_title_leftline.png" /> 情報入力</td>
+                </tr>
+                <tr class="gcs">
+                    <td class="td">* メール  </td>
+                    <td width="500px" align="left" class="txtbox">
+                        <input type="text" name="email" id="email" value="" size="13" maxlength="15">&nbsp;@
+                        <input type="text" name="email2" id="email2"  value="" readonly="readonly" size="16"/>
+                        <select name="emailChk" id="emailChk" onchange="SetEmailTail(emailChk.options[this.selectedIndex].value)">
+                            <option value="">選択してください</option>
+                            <option value="gcns.co.jp">gcns.co.jp</option>
+                            <option value="yahoo.co.jp">yahoo.co.jp</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="nate.com">nate.com</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="yahoo.co.kr">yahoo.co.kr</option>
+                            <option value="hotmail.com">hotmail.com</option>
+                            <option value="直接入力">直接入力</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="3" class="title_size" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table align="center" height="110">
+                            <tr>
+                                <td><input type="button" onclick="ok()" value="検索">&nbsp;&nbsp;</td>
+                                <td><input type="button" onclick="back()" value="キャンセル"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>

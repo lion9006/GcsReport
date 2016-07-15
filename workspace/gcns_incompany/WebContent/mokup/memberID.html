@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>ID発給</title>
+    <link rel="stylesheet" href="css/memberID.css" />
+    
+    <script>
+        function ok() {
+        	alert("IDは成功的に発給しました。");
+            main.location.href = "memberID.html";
+        }
+ 
+
+    </script>
+</head>
+<body>
+    <center>
+        <table border="0" cellpadding="0" cellspacing="0" width="1024" id="search">
+            
+            <tr>
+                <td class="title1">ID発給</td>
+            </tr>
+            
+        </table>
+        <form method="post" action="/registration" name="theform" autocomplete="off">
+            <table border="0" cellpadding="0" cellspacing="0" width="1004" id="search1" valign="center">
+                <tr>
+                    <td height="34" class="title_size" colspan="2"><img src="Img/join/join_title_leftline.png" /> </td>
+                </tr>
+                <tr class="gcs">
+                    <td width="350" class="td">* 社員ID </td>
+                    <td align="left" class="txtbox">
+                        <input type="text" maxlength="8" name="num" id="num" size="22">
+                        <input type="button" value="重複チェック">
+                    </td>
+                </tr>
+             
+                <tr>
+                    <td height="3" class="title_size" colspan="2"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table align="center" height="110">
+                            <tr>
+                                <td><input type="button" onclick="ok()" value="入力確認">&nbsp;&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>

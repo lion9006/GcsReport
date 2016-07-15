@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BbsInfo">
+		<select id="getBbsListPage" resultType="src.bean.BbsBean">
+	<!-- 	select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where code_bunrui_no="006" and code_no=bbs_category) 
+		bbs_category,del_flg,trk_id,bbs_title,bbs_fname,date_format(trk_dt,'%Y.%m.%d') trk_date,
+		date_format(trk_dt,'%H:%i') trk_time from bbstbl where del_flg=0
+		order by bbs_number desc limit #{page},20  -->
+		 	select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where code_bunrui_no="006" and code_no=bbs_category) 
+		bbs_category,del_flg,trk_id,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=bbstbl.trk_id)USER_NAME,bbs_title,bbs_fname,date_format(trk_dt,'%Y.%m.%d') trk_date,
+		date_format(trk_dt,'%H:%i') trk_time from bbstbl where del_flg=0
+		order by bbs_number desc limit #{page},20  
+	</select>
+	
+	<select id="getBbsListCount" resultType="src.bean.BbsBean">
+		SELECT bbs_number FROM
+		bbstbl where DEL_FLG=0
+	</select>
+	
+	<select id="getDoubleOptionSearchCount" resultType="src.bean.BbsBean">
+		select bbs_number from bbstbl
+		where bbs_category = ${option1} and del_flg=0 and ${option2} like concat('%','${value}','%') 
+	</select>
+	
+	<select id="getDoubleOptionSearchList" resultType="src.bean.BbsBean">
+		<!-- select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(trk_dt,'%H:%i') trk_time from bbstbl
+		where bbs_category=${option1} and del_flg=0 and ${option2} like concat('%','${value}','%') 
+		order by bbs_number desc limit ${page},20 -->
+		
+		select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=bbstbl.trk_id)USER_NAME,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(trk_dt,'%H:%i') trk_time from bbstbl
+		where bbs_category=${option1} and del_flg=0 and ${option2} like concat('%','${value}','%') 
+		order by bbs_number desc limit ${page},20
+		
+		
+	</select>
+	
+	<select id="getAllOptionSearchCount" resultType="src.bean.BbsBean">
+		select bbs_number from bbstbl
+		where bbs_category=${option1} and del_flg=0 and bbs_title like concat('%','${value}','%') or
+		bbs_category=${option1} and del_flg=0 and trk_id like concat('%','${value}','%')
+	</select>
+	
+	<select id="getAllOptionSearchList" resultType="src.bean.BbsBean">
+		<!-- select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(trk_dt,'%H:%i') trk_time from bbstbl
+		where bbs_category=${option1} and del_flg=0 and bbs_title like concat('%','${value}','%') or
+		bbs_category=${option1} and del_flg=0 and trk_id like concat('%','${value}','%')
+		order by bbs_number desc limit ${page},20 -->
+		
+		select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=bbstbl.trk_id)USER_NAME,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(trk_dt,'%H:%i') trk_time from bbstbl
+		where bbs_category=${option1} and del_flg=0 and bbs_title like concat('%','${value}','%') or
+		bbs_category=${option1} and del_flg=0 and trk_id like concat('%','${value}','%')
+		order by bbs_number desc limit ${page},20
+		
+	</select>
+	
+	<select id="getAllSearchList" resultType="src.bean.BbsBean">
+		<!-- select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(trk_dt,'%H:%i') trk_time from bbstbl 
+		where del_flg=0 and bbs_title like concat('%','${value}','%') or del_flg=0 and trk_id like concat('%','${value}','%')
+		order by bbs_number desc limit ${page},20 -->
+		
+		
+		select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=bbstbl.trk_id)USER_NAME,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(trk_dt,'%H:%i') trk_time from bbstbl 
+		where del_flg=0 and bbs_title like concat('%','${value}','%') or del_flg=0 and trk_id like concat('%','${value}','%')
+		order by bbs_number desc limit ${page},20
+		
+	</select>
+	
+	<select id="getAllSearchCount" resultType="src.bean.BbsBean">
+		select * from bbstbl
+		where del_flg=0 and bbs_title like concat('%','${value}','%') or del_flg=0 and trk_id like concat('%','${value}','%')
+	</select>
+	
+	<select id="getAllCategorySearchList" resultType="src.bean.BbsBean">
+		<!-- select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(upd_dt,'%H:%i') trk_time from bbstbl
+		where del_flg=0 and ${option2} like concat('%','${value}','%') 
+		order by bbs_number desc limit ${page},20 -->
+		
+		select bbs_number,(select case when bbs_category then ssk_nm end from codtbl where 
+		code_bunrui_no="006" and code_no=bbs_category) bbs_category,del_flg,trk_id,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=bbstbl.trk_id)USER_NAME,bbs_title,bbs_fname,date_format
+		(trk_dt,'%Y.%m.%d') trk_date,date_format(upd_dt,'%H:%i') trk_time from bbstbl
+		where del_flg=0 and ${option2} like concat('%','${value}','%') 
+		order by bbs_number desc limit ${page},20
+		
+		
+	</select>
+	
+	<select id="getAllCategorySearchCount" resultType="src.bean.BbsBean">
+		select * from bbstbl
+		where del_flg=0 and ${option2} like concat('%','${value}','%')
+	</select>
+
+	<insert id="setBbsWrite" parameterType="src.bean.BbsBean">
+		INSERT INTO bbstbl 
+			(BBS_CATEGORY, BBS_TITLE, BBS_CONTENT, BBS_FNAME, BBS_FDATA, UPD_ID, TRK_ID, TRK_DT, UPD_DT)
+			VALUES
+			(#{BBS_CATEGORY}, #{BBS_TITLE}, #{BBS_CONTENT}, #{BBS_FNAME}, #{BBS_FDATA}, #{UPD_ID}, #{TRK_ID}, now(), now())
+	</insert>
+		
+	<resultMap id="file" type="src.bean.BbsBean">
+		<result property="BBS_NUMBER" column="BBS_NUMBER" />
+		<result property="BBS_CATEGORY" column="BBS_CATEGORY" />
+		<result property="BBS_TITLE" column="BBS_TITLE" />
+		<result property="BBS_CONTENT" column="BBS_CONTENT" />
+		<result property="BBS_FNAME" column="BBS_FNAME" />
+		<result property="BBS_FDATA" column="BBS_FDATA" jdbcType="BLOB"
+			javaType="[B" typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
+		<result property="DEL_FLG" column="DEL_FLG" />
+		<result property="UPD_DT" column="UPD_DT" />
+		<result property="UPD_ID" column="UPD_ID" />
+		<result property="TRK_DT" column="TRK_DT" />
+		<result property="TRK_ID" column="TRK_ID" />
+	</resultMap>
+	
+	<select id="getBbsview" resultType="src.bean.BbsBean">
+		 <!-- SELECT * FROM
+		bbstbl b left outer join codtbl c on b.bbs_category = c.code_no where b.BBS_NUMBER=#{BBS_NUMBER} and c.code_bunrui_no=6 and b.DEL_FLG = 0
+	 -->
+	 SELECT CODE_NM,b.BBS_NUMBER,b.BBS_CATEGORY,b.BBS_TITLE,b.BBS_CONTENT,b.BBS_FNAME,b.BBS_FDATA,b.DEL_FLG,b.UPD_DT,b.UPD_ID,b.TRK_DT,b.TRK_ID,(select concat( USER_CCFNAME ,USER_CCLNAME)from UserTBL where USER_ID=b.trk_id) USER_NAME
+	 ,(select concat( USER_KATAFNAME ,USER_KATALNAME)from UserTBL where USER_ID=b.trk_id) USER_NAME_KATA FROM
+		bbstbl b left outer join codtbl c on b.bbs_category = c.code_no where b.BBS_NUMBER=#{BBS_NUMBER} and c.code_bunrui_no=6 and b.DEL_FLG = 0
+	 
+	 
+	
+	
+	</select>
+	 <!-- <select id="getDownload" resultMap="file"> -->
+	 <select id="getDownload" resultMap="file">
+		SELECT * FROM bbstbl
+		where DEL_FLG=0 and BBS_NUMBER =#{BBS_NUMBER}
+	</select>
+	<select id="getCommentview" resultType="src.bean.CommentBean">
+		SELECT * FROM
+		comtbl c left outer join usertbl u on c.trk_id=u.user_id where c.DEL_FLG=0 and c.BBS_NUMBER= #{BBS_NUMBER} order by c.COM_NUMBER 
+	</select>
+	<insert id="setCommentWrite" parameterType="src.bean.CommentBean">
+		INSERT INTO comtbl
+		(BBS_NUMBER, COM_CONTENT, TRK_ID,UPD_ID, TRK_DT, UPD_DT)
+			VALUES
+			(#{BBS_NUMBER},#{COM_CONTENT},#{TRK_ID},#{TRK_ID},now(), now())
+	</insert>
+	<update id="setCommentDelete" parameterType="src.bean.CommentBean">
+		update comtbl set DEL_FLG= 1 where COM_NUMBER=#{COM_NUMBER}
+	</update>
+
+	<update id="setBbsUpdateNewFile" parameterType="src.bean.BbsBean">
+		update bbstbl set BBS_CATEGORY=#{BBS_CATEGORY}, BBS_TITLE=#{BBS_TITLE}, BBS_CONTENT=#{BBS_CONTENT}, BBS_FNAME=#{BBS_FNAME}, BBS_FDATA=#{BBS_FDATA}, TRK_DT=now() WHERE BBS_NUMBER=#{BBS_NUMBER} and DEL_FLG= 0
+	</update>
+	<update id="setBbsUpdateNoFile" parameterType="src.bean.BbsBean">
+		update bbstbl set BBS_CATEGORY=#{BBS_CATEGORY}, BBS_TITLE=#{BBS_TITLE}, BBS_CONTENT=#{BBS_CONTENT}, BBS_FNAME=#{BBS_FNAME}, BBS_FDATA=#{BBS_FDATA}, TRK_DT=now() WHERE BBS_NUMBER=#{BBS_NUMBER} and DEL_FLG= 0
+	</update>
+	<update id="setBbsUpdate" parameterType="src.bean.BbsBean">
+		update bbstbl set BBS_CATEGORY=#{BBS_CATEGORY}, BBS_TITLE=#{BBS_TITLE}, BBS_CONTENT=#{BBS_CONTENT}, TRK_DT=now() WHERE BBS_NUMBER=#{BBS_NUMBER} and DEL_FLG= 0
+	</update>
+	<update id="setDeleteBbs" parameterType="src.bean.BbsBean">
+		update bbstbl set DEL_FLG= 1 where BBS_NUMBER=#{BBS_NUMBER}
+	</update>
+</mapper>
+

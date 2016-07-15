@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Manager">
+	<select id="selectAllUser" resultType="src.bean.UserTBLBean">
+		select
+		USER_ID,USER_PASSWORD,USER_CCFNAME,USER_CCLNAME,USER_KATAFNAME,USER_KATALNAME,
+		USER_ADDRESS,USER_PHONE,
+		( SELECT CASE
+		WHEN USER_DEPARTMENT THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE
+		CODE_BUNRUI_NO="002" and USER_DEPARTMENT = CODE_NO )
+		AS
+		USER_DEPARTMENT,
+		( SELECT CASE
+		WHEN USER_RANK THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE CODE_BUNRUI_NO="003" and USER_RANK = CODE_NO )
+		AS USER_RANK,
+		USER_GENDER,USER_BIRTHDAY,USER_EMAIL,USER_KAKAOTALK,USER_INFO,USER_STATUS,DEL_FLG,UPD_DT,UPD_ID
+		from usertbl where DEL_FLG=0 order by USER_DEPARTMENT,USER_id, USER_RANK ASC
+	</select>
+	<select id="selectOneUser" resultType="src.bean.UserTBLBean">
+		select * from usertbl where user_id = #{user_id} and DEL_FLG = 0
+	</select>
+	<update id="deleteMember">
+		update usertbl set DEL_FLG = "1" where user_id = #{user_id}
+	</update>
+	<update id="updateMemberpassword" parameterType="src.bean.UserTBLBean">
+		update usertbl set USER_PASSWORD = #{user_password}, USER_DEPARTMENT = #{user_department}, USER_RANK = #{user_rank}, USER_STATUS = #{user_status} where user_id = #{user_id} 
+	</update>
+	<update id="updateMember_nopassword" parameterType="src.bean.UserTBLBean">
+		update usertbl SET USER_DEPARTMENT = #{user_department}, USER_RANK = #{user_rank}, USER_STATUS = #{user_status} where user_id = #{user_id}
+	</update>
+	<update id="updateMember">
+		update usertbl SET USER_DEPARTMENT = #{user_department}, USER_RANK = #{user_rank}, USER_STATUS = #{user_status} where user_id = #{user_id}
+	</update>
+	<select id="search_userid" resultType="src.bean.UserTBLBean">
+		select
+		USER_ID,USER_PASSWORD,USER_CCFNAME,USER_CCLNAME,USER_KATAFNAME,
+		USER_KATALNAME,
+<!-- 		USER_NAME, -->
+		USER_ADDRESS,USER_PHONE,
+		( SELECT CASE
+		WHEN USER_DEPARTMENT THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE
+		CODE_BUNRUI_NO="002" and USER_DEPARTMENT = CODE_NO )
+		AS
+		USER_DEPARTMENT,
+		( SELECT CASE
+		WHEN USER_RANK THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE CODE_BUNRUI_NO="003" and USER_RANK = CODE_NO )
+		AS USER_RANK,
+		USER_GENDER,USER_BIRTHDAY,USER_EMAIL,USER_KAKAOTALK,USER_INFO,USER_STATUS,DEL_FLG,UPD_DT,UPD_ID
+		from usertbl where DEL_FLG=0 and ${column} like CONCAT('%',
+		#{keyword},
+		'%') 
+	</select>
+	<select id="searchoption" resultType="src.bean.UserTBLBean">
+		select
+		USER_ID,USER_PASSWORD,
+<!-- 		USER_NAME, -->
+		USER_CCFNAME,USER_CCLNAME,USER_KATAFNAME,USER_KATALNAME,
+		USER_ADDRESS,USER_PHONE,
+		( SELECT CASE
+		WHEN USER_DEPARTMENT THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE
+		CODE_BUNRUI_NO="002" and USER_DEPARTMENT = CODE_NO )
+		AS
+		USER_DEPARTMENT,
+		( SELECT CASE
+		WHEN USER_RANK THEN SSK_NM
+		END
+		FROM codtbl
+		WHERE CODE_BUNRUI_NO="003" and USER_RANK = CODE_NO )
+		AS USER_RANK,
+		USER_GENDER,USER_BIRTHDAY,USER_EMAIL,USER_KAKAOTALK,USER_INFO,USER_STATUS,DEL_FLG,UPD_DT,UPD_ID
+		from usertbl where DEL_FLG=0 and ${column} in (SELECT code_no FROM
+		codtbl WHERE CODE_BUNRUI_NO =#{code} and ssk_nm like CONCAT('%',
+		#{keyword},
+		'%') )
+	</select>
+	<!-- <select id="search_rank">
+		select * from usertbl where USER_RANK LIKE %#{SearchInfo}%
+	</select> -->
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CodeInfo">
+
+	<select id="getAllCodeInfo" resultType="src.bean.CodeTBLBean">
+		SELECT * FROM CODTBL WHERE CODE_BUNRUI_NO = #{CODE_BUNRUI_NO} AND DEL_FLG=0 ORDER BY CODE_NO
+	</select>
+	
+	<select id="getCodeInfo" resultType="src.bean.CodeTBLBean">
+		SELECT * FROM CODTBL WHERE CODE_BUNRUI_NO = #{CODE_BUNRUI_NO} AND CODE_NO = #{CODE_NO} AND DEL_FLG=0 
+	</select>
+	
+</mapper>

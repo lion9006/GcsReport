@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type = "text/css" href="css/bbs_view.css" >
+<title>view</title>
+<style type="text/css">
+.a{
+	text-decoration: line-through;
+}
+</style>
+<script type="text/javascript">
+
+function DeleteFileLode(){		
+	var fileLoad = document.getElementById("fileLoad");
+	var table = document.getElementById("file1");
+	var remove = document.getElementById("xBtn");
+	fileLoad.value="";
+	
+	if(fileLoad.value == ""){
+		table.removeChild(remove);
+	}
+ }
+function Delete(){
+	 var file = document.getElementById("file1").TEXT_NODE
+	 
+	 var returnValue = confirm("添付ファイルを削除しますか。");
+	 	
+	 if(returnValue == true){
+	 	
+	 	if(file!=null){
+			var table = document.getElementById("file1");
+			var textNode = document.getElementById("file2");
+			var xButton =document.getElementById("xButton");
+			
+			table.removeChild(textNode);
+			table.removeChild(xButton);
+		
+			var createFile = document.createElement("INPUT");
+			createFile.setAttribute("type", "file");
+			createFile.setAttribute("id","fileLoad");
+			createFile.setAttribute("onClick", "fileCheck()");
+			table.appendChild(createFile);
+	 	}
+	 }
+}
+function fileCheck(){
+		var fileTure = document.getElementById("fileLoad");
+		var table = document.getElementById("file1");
+		var createBtn = document.createElement("img");
+		var form = document.theForm;
+		createBtn.setAttribute("src", "img/bbs/x.png");
+		createBtn.setAttribute("width", "10px");
+		createBtn.setAttribute("id", "xBtn");
+		createBtn.setAttribute("onclick","DeleteFileLode()");
+		
+		if(form.fileLoad.value == ""){
+			table.appendChild(createBtn);
+		}
+}
+function cancel(){
+	 	var returnValue = confirm("戻りますか。");
+	 	if(returnValue == true){
+	 		history.back();
+	 	}
+}
+</script>
+</head>
+<body>
+    
+    <center>
+        <section id="content" style="margin-top:-30px;">          
+               <div class="loBB bt5px" id="log_op">
+                <div id="logintool">
+                    <img src="img/bbs/title.png" />                   
+                    <div style="overflow:hidden; width:890px;">
+                        
+							<form name="theForm">
+							<table border="0" cellpadding="0" cellspacing="0" width="890" id="join1" valign="center">
+								<tr>
+									<td height="34" class="title_size" colspan="2"><img src=" img/join/join_title_leftline.png" /> 修正</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >カテゴリー  </td>
+									<td align="left" class="td">
+										 <select name="category" id="category">
+				                            <option value="1">一般</option>
+				                            <option value="2">資料</option>
+				                            <option value="3">情報</option>
+				                        </select>
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >題目  </td>
+									<td align="left" class="td"><input type="text" maxlength="40" name="title" id="num" size="50" value="" placeholder="始めまして、私は田中です。"></td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td">作成者</td>
+									<td align="left" class="td">徐東駿　＜ソドンジュン＞</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td">作成日</td>
+									<td align="left" class="td">2015.03.03 00:00:00</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td">添付ファイル</td>
+									<td align="left" class="td" id="file1">
+										<span id="file2">window.exe</span><img src="img/bbs/x.png" width="10px" onclick="Delete()" id="xButton">
+									</td>
+								</tr>
+								<tr class="gcs">
+									<td width="200" class="td" >内容  </td>
+									<td height ="245" align="left" class="td" >
+										<textarea name="textBody" id="num" style="resize: none;" rows="15" cols="85" value="" placeholder="本文を入力してください。"></textarea>
+									</td>
+								</tr>
+					<!--button부분   -->
+								<tr>																
+									  <table border="0"align="center"width="890"height="50">
+											<tr>
+												<td align="right"><input type="button" value="修正" onClick="location.href='bbs_view.html'"/>
+												<input type="button" value="キャンセル" onClick="cancel()" />
+												</td>
+											</tr>
+										</table>
+									
+								</tr>
+							</table>
+							</form>
+					</div>
+                </div>
+         </section>
+       </center>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>掲示板 削除</title>
+<script type="text/javascript">
+	function Cancle(){
+		window.close();
+	}
+	function Ok(){
+		//listへ
+		opener.history.back();
+		window.close();
+	}
+</script>
+</head>
+<body>
+	<center>
+	<br/>
+	<table>
+		<tr>
+			<td align="center">
+				<font style="font-weight: bolder; font-size: large;"><img src=" img/join/join_title_leftline.png" />削除しますか。</font><br/><br/>
+				<button onclick="Ok()">削除</button>
+				<button onclick="Cancle()">キャンセル</button> 
+			</td>
+		</tr>
+	</table>
+	</center>
+</body>
+</html>
